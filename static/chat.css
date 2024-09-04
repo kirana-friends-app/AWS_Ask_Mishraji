@@ -1,0 +1,128 @@
+* {
+  font-size: 1.3vw;
+  font-family: "Epilogue", sans-serif;
+}
+h1{
+  text-align: center;
+  justify-content: center;
+}
+html {
+  --scrollbarBG: #fff;
+  --thumbBG: #90a4ae;
+}
+
+body {
+  background: #92c5c5;
+}
+body .card {
+  height: 45vw;
+  width: 70vw;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vw;
+  box-shadow: 2vw 2vw 12vw 3vw #ccc;
+  border-radius: 10px;
+  justify-content: center;
+  align-content: center;
+}
+body .card #header {
+  height: 5vw;
+  background: #343434;
+  padding: 0vw;
+  border-radius: 10px 10px 0 0 ;
+}
+body .card #header h1 {
+  color: #fff;
+  font-size: 2vw;
+  padding: 1vw;
+  align-content: center;
+  justify-content: center;
+}
+body .card #message-section::-webkit-scrollbar {
+  width: 100%;
+}
+body .card #message-section {
+  height: 25vw;
+  padding: 0 2.5vw;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body .card #message-section::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+body .card #message-section::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+body .card #message-section #bot,
+body .card #message-section #user {
+  position: relative;
+  bottom: 0;
+  min-height: 1.5vw;
+  border: 0.15vw solid #777;
+  background-color: #fff;
+  border-radius: 0px 1.5vw 1.5vw 1.8vw;
+  padding: 1vw;
+  margin: 1.5vw 0;
+}
+body .card #message-section #user {
+  border: 1.5px solid #000;
+  border-radius: 0.5vw 0vw 0.5vw 0.8vw;
+  background-color: rgba(82, 92, 86, 0.663);
+  float: right;
+}
+body .card #message-section #user #user-response {
+  color: #fff;
+}
+body .card #message-section .message {
+  color: #000;
+  clear: both;
+  line-height: 1.2vw;
+  font-size: 1.2vw;
+  padding: 8px;
+  position: relative;
+  margin: 8px 0;
+  max-width: 85%;
+  word-wrap: break-word;
+  z-index: 2;
+}
+body .card #chat-window {
+  z-index: 1;
+  padding: 0.1vw 0.1vw;
+  display: flex;
+  flex-direction:column;
+  align-items: flex-end;
+  overflow: hidden;
+  height: 4vw;
+  width: 90%;
+  margin-top: 1vw;
+}
+body .card #chat-window input {
+  color: #151414;
+  min-width: 0.5vw;
+  outline:#000;
+  height: 5vw;
+  width: 90%;
+  border-top: solid #000 0.1vw;
+  border-left: solid #000 0.1vw;
+  border-right: solid #000 0.1vw;
+  border-bottom: solid #000 0.1vw;
+  border-radius: 5px;
+  
+}
+
+.button{
+  width:30% ;
+  height: 4vw;
+  min-width: 0.5vw;
+  border-radius: 12px;
+  color: rgb(26, 24, 24);
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  justify-content: center;
+  }
+  

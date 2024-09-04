@@ -1,0 +1,65 @@
+
+* {
+  font-size: 1vw;
+  font-family: "Epilogue", sans-serif;
+  color: #E0E0E0;
+}
+
+html {
+  --scrollbarBG: #333;
+  --thumbBG: #555;
+}
+
+body {
+  background: #121212;
+  margin: 0;
+  padding: 0;
+}
+
+body .card {
+  height: auto;
+  min-height: 50vw;
+  width: 60vw;
+  background-color: #1E1E1E;
+  margin: 5vw auto;
+  box-shadow: 1vw 1vw 6vw 1vw #000;
+  border-radius: 10px;
+  padding: 2vw;
+}
+
+body .card #header {
+  background-color: #333;
+  color: #FFFFFF;
+  padding: 1vw;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2vw;
+}
+
+#message-section {
+  margin: 2vw 0;
+}
+
+.message {
+  background-color: #252525;
+  padding: 1vw;
+  margin: 1vw 0;
+  border-radius: 5px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  * {
+    font-size: 2vw;
+  }
+
+  body .card {
+    width: 80vw;
+  }
+
+  h1 {
+    font-size: 3vw;
+  }
+}
