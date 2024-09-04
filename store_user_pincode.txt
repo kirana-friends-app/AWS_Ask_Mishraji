@@ -1,0 +1,16 @@
+{
+  "name": "store_user_pincode",
+  "description": "Stores the user's pincode for location-based services or preferences.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "pincode": {
+        "type": "string",
+        "description": "The postal code or pincode of the user's location."
+      }
+    },
+    "required": [
+      "pincode"
+    ]
+  }
+}

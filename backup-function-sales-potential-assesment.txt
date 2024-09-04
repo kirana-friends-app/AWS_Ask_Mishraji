@@ -1,0 +1,41 @@
+{
+  "name": "sales_potential_assessment",
+  "description": "Evaluates a store's selling potential based on its location, store size, area_type and current_sales using a detailed sales potential data.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "location": {
+        "type": "string",
+        "enum": [
+          "Tier1",
+          "Tier2",
+          "Tier3"
+        ],
+        "description": "The tier of city derived from the location."
+      },
+      "store_size": {
+        "type": "number",
+        "description": "The size of the store in square feet."
+      },
+      "current_sales": {
+        "type": "number",
+        "description": "The current sales of the store."
+      },
+      "area_type": {
+        "type": "string",
+        "enum": [
+          "High Street",
+          "Residential",
+          "Low rent area"
+        ],
+        "description": "The type of area where the store is located."
+      }
+    },
+    "required": [
+      "location",
+      "store_size",
+      "area_type",
+      "current_sales"
+    ]
+  }
+}
