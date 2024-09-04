@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Chat with our Bot</h1>
+    <div id="chat-window">
+        <div id="output"></div>
+    </div>
+    <input type="text" id="username" placeholder="Your Name">
+    <input type="text" id="text" placeholder="Say something...">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        function sendMessage() {
+            var username = document.getElementById('username').value;
+            var text = document.getElementById('text').value;
+            var output = document.getElementById('output');
+
+            // Add the user's text to the chat window
+            output.innerHTML += `<p>You: ${text}</p>`;
+
+            // Make a POST request to send the message
+            fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `username=${encodeURIComponent(username)}&message=${encodeURIComponent(text)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Add the bot's response to the chat window
+                output.innerHTML += `<p>Bot: ${data.response}</p>`;
+            })
+            .catch(error => console.error('Error:', error));
+
+            // Clear the input field
+            document.getElementById('text').value = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="../static/updated_css_for_chat.css">
+    <style>
+        /* Add the new CSS styles here or update the existing CSS file */
+        ol {
+            counter-reset: list;
+        }
+        li {
+            list-style: none;
+            position: relative;
+            margin-left: 20px;
+            counter-increment: list;
+        }
+        li:before {
+            content: counter(list) ". ";
+            position: absolute;
+            left: -20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div id="header">
+            <h1>Kirana Expert</h1>
+        </div>
+        <div id="message-section">
+            <!-- The bot response will be formatted and displayed here -->
+            <div class="message" id="bot"><span id="bot-response"> Aapki Kirana samandhit sawalo ke liye!</span></div>
+        </div>
+        <div id="chat-window" class="chat-box">
+            <input type="text" id="username" placeholder="Your Name">
+        </div>
+        <div id="chat-window" class="chat-box">
+            <input type="text" id="text" placeholder="Say something..."></div>
+        <div class="button"><button onclick="sendMessage()" >Send</button></div>
+        <div id="output"></div>
+
+    <script>
+        function formatOpenAIResponse(answer) {
+        // Function to replace **text** with <strong>text</strong>
+        function makeBold(text) {
+            return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        }
+
+        let lines = answer.split('\n').filter(line => line.trim() !== '');
+        let html_answer = '<ol>';
+
+        // Assuming the first line does not contain list items and should not be in the list
+        if (lines.length > 0) {
+            html_answer = `<p>${makeBold(lines[0])}</p>` + html_answer;
+        }
+
+        const listItemRegex = /^\d+\.\s+/;
+        for (let i = 1; i < lines.length; i++) {
+            if (listItemRegex.test(lines[i])) {
+                let itemText = lines[i].replace(listItemRegex, '');
+                html_answer += `<li>${makeBold(itemText)}</li>`;
+            } else {
+                html_answer += `</ol><p>${makeBold(lines[i])}</p><ol>`;
+            }
+        }
+        html_answer += '</ol>';
+
+        return html_answer;
+    }
+
+
+        function sendMessage() {
+            var username = document.getElementById('username').value;
+            var text = document.getElementById('text').value;
+            var output = document.getElementById('message-section');
+
+            output.innerHTML += `<div>You: ${text}</div>`;
+
+            fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `username=${encodeURIComponent(username)}&message=${encodeURIComponent(text)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                let formattedResponse = formatOpenAIResponse(data.response);
+                output.innerHTML += `<div class="message bot">Bot: ${formattedResponse}</div>`;
+            })
+            .catch(error => console.error('Error:', error));
+
+            document.getElementById('text').value = '';
+        }
+    </script></div>
+</body>
+</html>
